@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "product"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "download": {
+      "type": "string"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "products",
+      "dominant": true
+    }
+  }
+}
