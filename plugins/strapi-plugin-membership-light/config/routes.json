@@ -49,6 +49,14 @@
       }
     },
     {
+      "method": "PUT",
+      "path": "/products/unlock/:id",
+      "handler": "product.unlockProduct",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/products/:id",
       "handler": "product.delete",

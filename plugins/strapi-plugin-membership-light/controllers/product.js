@@ -108,6 +108,33 @@ module.exports = {
     
         const entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.delete({ id });
         return sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product });
+    },
+    /**
+     * Links a product to a user.
+     *
+     * @return {Object}
+     */
+    async unlockProduct(ctx) {
+        const user = ctx.state.user.id
+        const productId = ctx.params.id
+        console.log('user', user)
+        console.log('productId', productId)
+
+        const products = await strapi.query('product', 'strapi-plugin-membership-light').find({users_contains: user});
+        const found = products.find((product) => { return product.id == productId})
+
+        if(found) {
+            ctx.throw(400, 'The product is already linked to this user');
+        }
+
+        console.log(products)
+
+        let entity;
+        entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.unlockProduct(user, productId, products);
+
+        //console.log('entity', entity)
+
+        return sanitizeEntity(entity, { model: strapi.plugins['users-permissions'].models.user });
     }
 
 };

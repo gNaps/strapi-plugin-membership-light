@@ -89,5 +89,14 @@ module.exports = {
 
     delete(params) {
         return strapi.query('product', 'strapi-plugin-membership-light').delete(params);
+    },
+    /**
+     * Links a product to a user.
+     *
+     * @return {Object}
+     */
+    async unlockProduct(user, productId, products) {
+        const entity = await strapi.query('user', 'users-permissions').update({id: user}, {products: [...products, productId]})
+        return entity
     }
 };
