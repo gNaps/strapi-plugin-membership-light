@@ -95,8 +95,15 @@ module.exports = {
      *
      * @return {Object}
      */
-    async unlockProduct(user, productId, products) {
-        const entity = await strapi.query('user', 'users-permissions').update({id: user}, {products: [...products, productId]})
-        return entity
+    async unlockProduct(user, productId) {
+        const products = await strapi.plugins['strapi-plugin-membership-light'].services.product.find({users_contains: user, _limit: -1});
+        const found = products.find((product) => { return product.id == productId})
+
+        if(found) {
+            return {status: 'Ok'}
+        }
+        
+        await strapi.plugins['users-permissions'].services.user.edit({id: user}, {products: [...products, productId]})
+        return {status: 'Ok'}
     }
 };
