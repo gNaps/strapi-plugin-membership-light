@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "product"
+    "name": "product",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -12,6 +13,11 @@
   "attributes": {
     "download": {
       "type": "string"
+    },
+    "users": {
+      "via": "products",
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }

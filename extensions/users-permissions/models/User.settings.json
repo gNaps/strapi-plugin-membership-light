@@ -60,9 +60,10 @@
       "configurable": false
     },
     "products": {
-      "via": "users",
       "plugin": "strapi-plugin-membership-light",
-      "collection": "product"
+      "collection": "product",
+      "via": "users",
+      "dominant": true
     }
   }
 }

@@ -1,25 +1,19 @@
 {
-  "name": "strapi-plugin-strapi-plugin-membership-light",
-  "version": "0.0.0",
-  "description": "This is the description of the plugin.",
+  "name": "strapi-plugin-membership-light",
+  "version": "1.0.0",
+  "description": "Use this plugin to integrate a membership system on your products into your ecommerce website.",
   "strapi": {
     "name": "strapi-plugin-membership-light",
     "icon": "plug",
-    "description": "Description of strapi-plugin-membership-light plugin."
+    "description": "Use this plugin to integrate a membership system on your products into your ecommerce website."
   },
   "dependencies": {},
   "author": {
-    "name": "A Strapi developer",
-    "email": "",
-    "url": ""
+    "name": "gNaps",
+    "email": "gabriele.nap@gmail.com",
+    "url": "gabrielenapoli.com"
   },
-  "maintainers": [
-    {
-      "name": "A Strapi developer",
-      "email": "",
-      "url": ""
-    }
-  ],
+  "maintainers": [],
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
