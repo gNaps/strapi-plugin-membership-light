@@ -5,6 +5,9 @@ Use this plugin to integrate a membership system on your products into your ecom
 ``` 
 npm i strapi-plugin-membership-light
 ```
+
+Once installed you have to update content-type Users by adding a relationship many-to-many with the model products of the plugin.
+
 ## Retrieve the products for a user
 | Method    | Url                                       | Description                                                                                |
 |-----------|-------------------------------------------|--------------------------------------------------------------------------------------------|

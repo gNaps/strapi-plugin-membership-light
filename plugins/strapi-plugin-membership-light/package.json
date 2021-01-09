@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-membership-light",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Use this plugin to integrate a membership system on your products into your ecommerce website.",
   "strapi": {
     "name": "strapi-plugin-membership-light",
