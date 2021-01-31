@@ -13,7 +13,12 @@
     "email": "gabriele.nap@gmail.com",
     "url": "gabrielenapoli.com"
   },
-  "maintainers": [],
+  "maintainers": [
+    {
+      "name": "Alex The Entreprenerd", 
+      "email": "alex@entreprenerd.xyz"
+    }
+  ],
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
