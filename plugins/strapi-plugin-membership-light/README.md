@@ -11,11 +11,11 @@ Once installed you have to update content-type Users by adding a relationship ma
 ## Retrieve the products for a user
 | Method    | Url                                       | Description                                                                                |
 |-----------|-------------------------------------------|--------------------------------------------------------------------------------------------|
-| GET       | /strapi-plugin-membership-light/products  | Returns the list of products, if the product has not been bought the link will be censured |
+| GET       | /membership-light/products  | Returns the list of products, if the product has not been bought the link will be censured |
 
 ## Unlock a product after payment 
 ```javascript
-await strapi.plugins['strapi-plugin-membership-light'].services.product.unlockProduct(user, productId)
+await strapi.plugins['membership-light'].services.product.unlockProduct(user, productId)
 ```
 ## Functions
 ### unlockProduct

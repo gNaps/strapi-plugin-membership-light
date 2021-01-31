@@ -15,7 +15,7 @@ module.exports = {
         if (ctx.query._q) {
             entities = await strapi.services.product.search(ctx.query);
         } else {
-            entities = await strapi.plugins['strapi-plugin-membership-light'].services.product.find(ctx.query);
+            entities = await strapi.plugins['membership-light'].services.product.find(ctx.query);
         }
 
         if(entities){
@@ -32,7 +32,7 @@ module.exports = {
             })
         }
 
-        return entities.map(entity => sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product }));
+        return entities.map(entity => sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product }));
     },
     /**
      * Retrieve a record.
@@ -44,7 +44,7 @@ module.exports = {
         const { id } = ctx.params;
         const { user } = ctx.state
 
-        const entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.findOne({ id });
+        const entity = await strapi.plugins['membership-light'].services.product.findOne({ id });
 
         if(entity) {
             if(user && entity.users){
@@ -58,7 +58,7 @@ module.exports = {
             }
         }
         
-        return sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product });
+        return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
     /**
      * Count records.
@@ -68,9 +68,9 @@ module.exports = {
 
     count(ctx) {
         if (ctx.query._q) {
-            return strapi.plugins['strapi-plugin-membership-light'].services.product.countSearch(ctx.query);
+            return strapi.plugins['membership-light'].services.product.countSearch(ctx.query);
         }
-        return strapi.plugins['strapi-plugin-membership-light'].services.product.count(ctx.query);
+        return strapi.plugins['membership-light'].services.product.count(ctx.query);
     },
     /**
      * Create a record.
@@ -80,9 +80,9 @@ module.exports = {
 
     async create(ctx) {
         let entity;
-        entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.create(ctx.request.body);
+        entity = await strapi.plugins['membership-light'].services.product.create(ctx.request.body);
 
-        return sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product });
+        return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
     /**
      * Update a record.
@@ -94,9 +94,9 @@ module.exports = {
         const { id } = ctx.params;
 
         let entity;
-        entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.update({ id }, ctx.request.body);
+        entity = await strapi.plugins['membership-light'].services.product.update({ id }, ctx.request.body);
 
-        return sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product });
+        return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
     /**
      * Delete a record.
@@ -106,8 +106,8 @@ module.exports = {
     async delete(ctx) {
         const { id } = ctx.params;
     
-        const entity = await strapi.plugins['strapi-plugin-membership-light'].services.product.delete({ id });
-        return sanitizeEntity(entity, { model: strapi.plugins['strapi-plugin-membership-light'].models.product });
+        const entity = await strapi.plugins['membership-light'].services.product.delete({ id });
+        return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     }
 
 };

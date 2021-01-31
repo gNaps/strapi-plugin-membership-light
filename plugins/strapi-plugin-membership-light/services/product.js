@@ -12,7 +12,7 @@ module.exports = {
      * @return {Promise}
      */
     find(params, populate) {
-        return strapi.query('product', 'strapi-plugin-membership-light').find(params, populate);
+        return strapi.query('product', 'membership-light').find(params, populate);
     },
     /**
     * Promise to fetch record
@@ -21,7 +21,7 @@ module.exports = {
     */
 
     findOne(params, populate) {
-        return strapi.query('product', 'strapi-plugin-membership-light').findOne(params, populate);
+        return strapi.query('product', 'membership-light').findOne(params, populate);
     },
 
     /**
@@ -31,7 +31,7 @@ module.exports = {
      */
 
     count(params) {
-        return strapi.query('product', 'strapi-plugin-membership-light').count(params);
+        return strapi.query('product', 'membership-light').count(params);
     },
 
     /**
@@ -42,7 +42,7 @@ module.exports = {
 
     async create(data, { files } = {}) {
         const validData = await strapi.entityValidator.validateEntity(strapi.models.product, data);
-        const entry = await strapi.query('product', 'strapi-plugin-membership-light').create(validData);
+        const entry = await strapi.query('product', 'membership-light').create(validData);
 
         if (files) {
         // automatically uploads the files based on the entry and the model
@@ -67,7 +67,7 @@ module.exports = {
         strapi.models.product,
         data
         );
-        const entry = await strapi.query('product', 'strapi-plugin-membership-light').update(params, validData);
+        const entry = await strapi.query('product', 'membership-light').update(params, validData);
 
         if (files) {
         // automatically uploads the files based on the entry and the model
@@ -88,7 +88,7 @@ module.exports = {
      */
 
     delete(params) {
-        return strapi.query('product', 'strapi-plugin-membership-light').delete(params);
+        return strapi.query('product', 'membership-light').delete(params);
     },
     /**
      * Links a product to a user.
@@ -96,7 +96,7 @@ module.exports = {
      * @return {Object}
      */
     async unlockProduct(user, productId) {
-        const products = await strapi.plugins['strapi-plugin-membership-light'].services.product.find({users_contains: user, _limit: -1});
+        const products = await strapi.plugins['membership-light'].services.product.find({users_contains: user, _limit: -1});
         const found = products.find((product) => { return product.id == productId})
 
         if(found) {
