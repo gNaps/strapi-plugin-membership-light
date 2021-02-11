@@ -13,9 +13,9 @@ module.exports = {
         const {user} = ctx.state
 
         if (ctx.query._q) {
-            entities = await strapi.services.product.search(ctx.query);
+            entities = await strapi.services.product.search(ctx.query, []);
         } else {
-            entities = await strapi.plugins['membership-light'].services.product.find(ctx.query);
+            entities = await strapi.plugins['membership-light'].services.product.find(ctx.query, []);
         }
 
         if(entities){
@@ -44,7 +44,7 @@ module.exports = {
         const { id } = ctx.params;
         const { user } = ctx.state
 
-        const entity = await strapi.plugins['membership-light'].services.product.findOne({ id });
+        const entity = await strapi.plugins['membership-light'].services.product.findOne({ id }, []);
 
         if(entity) {
             if(user && entity.users){
@@ -79,8 +79,7 @@ module.exports = {
      */
 
     async create(ctx) {
-        let entity;
-        entity = await strapi.plugins['membership-light'].services.product.create(ctx.request.body);
+        const entity = await strapi.plugins['membership-light'].services.product.create(ctx.request.body);
 
         return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
@@ -92,9 +91,8 @@ module.exports = {
 
     async update(ctx) {
         const { id } = ctx.params;
-
-        let entity;
-        entity = await strapi.plugins['membership-light'].services.product.update({ id }, ctx.request.body);
+        
+        const entity = await strapi.plugins['membership-light'].services.product.update({ id }, ctx.request.body);
 
         return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
