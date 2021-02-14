@@ -29,6 +29,8 @@ module.exports = {
                 } else {
                     entity.download = 'Please purchase this product, get in touch with support for help'
                 }
+
+                delete entity.users // Do not leak user data
             })
         }
 
@@ -56,6 +58,7 @@ module.exports = {
             } else {
                 entity.download = 'Please purchase this product, get in touch with support for help'
             }
+            delete entity.users // Do not leak user data
         }
         
         return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
@@ -79,8 +82,7 @@ module.exports = {
      */
 
     async create(ctx) {
-        let entity;
-        entity = await strapi.plugins['membership-light'].services.product.create(ctx.request.body);
+        const entity = await strapi.plugins['membership-light'].services.product.create(ctx.request.body);
 
         return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
@@ -93,8 +95,7 @@ module.exports = {
     async update(ctx) {
         const { id } = ctx.params;
 
-        let entity;
-        entity = await strapi.plugins['membership-light'].services.product.update({ id }, ctx.request.body);
+        const entity = await strapi.plugins['membership-light'].services.product.update({ id }, ctx.request.body);
 
         return sanitizeEntity(entity, { model: strapi.plugins['membership-light'].models.product });
     },
